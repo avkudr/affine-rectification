@@ -18,7 +18,7 @@ Launch ```./main_rectification```.
 
 ## Paper
 
-If you use this code in your project, please cite the following paper [link] (http://ieeexplore.ieee.org/abstract/document/8001905/)
+If you use this code in your project, please cite the following paper [[link]](http://ieeexplore.ieee.org/abstract/document/8001905/)
 ```
 @inproceedings{kudryavtsev2017stereo,
   title={Stereo-image rectification for dense 3D reconstruction in scanning electron microscope},
