@@ -1,0 +1,3 @@
+/home/andrey.kudryavtsev/Documents/Projects/affine-rectification/build/CMakeFiles/edit_cache.dir
+/home/andrey.kudryavtsev/Documents/Projects/affine-rectification/build/CMakeFiles/rebuild_cache.dir
+/home/andrey.kudryavtsev/Documents/Projects/affine-rectification/build/CMakeFiles/main_rectification.dir
