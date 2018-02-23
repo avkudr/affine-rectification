@@ -16,7 +16,7 @@ make
 
 Launch ```./main_rectification```.
 
-## Paper
+## Citation
 
 If you use this code in your project, please cite the following paper [[link]](http://ieeexplore.ieee.org/abstract/document/8001905/)
 ```
