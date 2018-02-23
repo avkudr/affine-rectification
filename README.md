@@ -15,3 +15,16 @@ make
 ## Testing
 
 Launch ```./main_rectification```.
+
+## Paper
+
+If you use this code in your project, please cite the following paper [link] (http://ieeexplore.ieee.org/abstract/document/8001905/)
+```
+@inproceedings{kudryavtsev2017stereo,
+  title={Stereo-image rectification for dense 3D reconstruction in scanning electron microscope},
+  author={Kudryavtsev, Andrey V and Demb{\'e}l{\'e}, Sounkalo and Piat, Nadine},
+  booktitle={Int. Conf. on Manipulation, Automation and Robotics at Small Scales (MARSS'2017)},
+  pages={1--6},
+  year={2017},
+}
+```
