@@ -5,6 +5,7 @@ Affine rectification for SEM images
 
 ```
 git clone https://github.com/avkudr/affine-rectification.git
+cd affine-rectification
 mkdir build
 cd build 
 cmake ..
