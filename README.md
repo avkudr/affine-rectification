@@ -1,6 +1,10 @@
 # affine-rectification
 Affine rectification for SEM images 
 
+## Dependencies
+
+- OpenCV. Follow [this tutorial](https://docs.opencv.org/trunk/d7/d9f/tutorial_linux_install.html) to install it
+
 ## Installation
 
 ```
