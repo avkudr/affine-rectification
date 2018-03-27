@@ -1,13 +1,8 @@
-#include "rectification.h"
+#include "RectifierAffine.hpp"
 
 RectifierAffine::RectifierAffine()
 {
 
-}
-
-RectifierAffine::RectifierAffine(Image *im1, Image *im2, FundMat *F, std::vector<cv::Point2d> *inliers1, std::vector<cv::Point2d> *inliers2)
-{
-    init(im1, im2, F, inliers1, inliers2);
 }
 
 RectifierAffine::~RectifierAffine()
@@ -15,7 +10,7 @@ RectifierAffine::~RectifierAffine()
 
 }
 
-void RectifierAffine::init(Image *im1, Image *im2, FundMat *F, std::vector<cv::Point2d>* inliers1, std::vector<cv::Point2d>* inliers2) {
+void RectifierAffine::init(cv::Mat*im1, cv::Mat *im2, cv::Mat *F, std::vector<cv::Point2d>* inliers1, std::vector<cv::Point2d>* inliers2) {
     _imL = im1;
     _imR = im2;
     _F = F;
@@ -27,8 +22,12 @@ void RectifierAffine::init(Image *im1, Image *im2, FundMat *F, std::vector<cv::P
 void RectifierAffine::rectify()
 {
     std::cout << "Rectification started... " << std::endl;
-    cv::Mat epR = _F->getEpilinesRight();
-    cv::Mat epL = _F->getEpilinesLeft();
+    cv::Mat epR;
+    cv::Mat epL ;
+
+    cv::computeCorrespondEpilines(*_inliers1,1, *_F,epR);
+    cv::computeCorrespondEpilines(*_inliers2, 2, *_F,epL);
+
 
     //std::cout << _F.toMat() << "sdsdsds\n\n" << _F.toMat().t() << "\n\n";
 
@@ -39,12 +38,11 @@ void RectifierAffine::rectify()
 
     cv::Mat Rl = get2DRotationMatrixLeft();
     cv::Mat Rr = get2DRotationMatrixRight();
+    cv::warpAffine(*_imL, imLrect, Rl, _imL->size());
+    cv::warpAffine(*_imR, imRrect, Rr, _imR->size());
 
-    cv::warpAffine(_imL->get(), imLrect, Rl, _imL->get().size());
-    cv::warpAffine(_imR->get(), imRrect, Rr, _imR->get().size());
-
-    cv::cvtColor(imLrect, imLrect, CV_BGR2GRAY);
-    cv::cvtColor(imRrect, imRrect, CV_BGR2GRAY);
+    //cv::cvtColor(imLrect, imLrect, CV_BGR2GRAY);
+    //cv::cvtColor(imRrect, imRrect, CV_BGR2GRAY);
 
     cv::Mat imLrectShifted;
     cv::Mat imRrectShifted;
@@ -101,24 +99,27 @@ void RectifierAffine::rectify()
 
     imLrect = imLrectShifted;
     imRrect = imRrectShifted;
+    *_inliers1=inliersLeftTransformed;
+    *_inliers2= inliersRightTransformed ;
     std::cout << "Done" << std::endl;
-//    cv::imwrite("_R01.jpg", imLrect);
-//    cv::imwrite("_R02.jpg", imRrect);
+    //cv::imwrite("_R01.jpg", imLrect);
+    //cv::imwrite("_R02.jpg", imRrect);
 }
 
 bool RectifierAffine::isReady()
 {
-    return (! _F->isEmpty()) && (! this->_inliers1->empty()) && (! this->_inliers2->empty());
+    return (! _F->empty()) && (! this->_inliers1->empty()) && (! this->_inliers2->empty());
 }
 
 cv::Mat RectifierAffine::get2DRotationMatrixLeft()
 {
-    return cv::getRotationMatrix2D(cv::Point2d(_imL->get().cols/2.0,_imL->get().rows/2.0),angleL*180.0/CV_PI,1);
+    return cv::getRotationMatrix2D(cv::Point2d(_imR->cols/2.0,_imR->rows/2.0),angleL*180.0/CV_PI,1);
 }
 
 cv::Mat RectifierAffine::get2DRotationMatrixRight()
 {
-    return cv::getRotationMatrix2D(cv::Point2d(_imR->get().cols/2.0,_imR->get().rows/2.0),angleR*180.0/CV_PI,1);
+    return cv::getRotationMatrix2D(cv::Point2d(_imR->cols/2.0,_imR->rows/2.0),angleR*180.0/CV_PI,1);
+
 }
 
 cv::Mat RectifierAffine::get2DShiftMatrix()
