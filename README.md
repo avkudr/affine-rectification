@@ -21,6 +21,7 @@ The algorithm compises the following steps:
 
 ## Installation
 
+After you've installed all dependencies, just run this code:
 ```
 git clone https://github.com/avkudr/affine-rectification.git
 cd affine-rectification
