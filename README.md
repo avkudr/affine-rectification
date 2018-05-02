@@ -39,8 +39,8 @@ If you want to test it on your data, all you need to do is to change these lines
 ```
   double detectionThres = 0.004;
   double nnMatchRatio = 0.5;
-  cv::Mat img1 = imread("../data/potamogeton1.jpg", cv::IMREAD_GRAYSCALE);
-  cv::Mat img2 = imread("../data/potamogeton2.jpg", cv::IMREAD_GRAYSCALE);
+  cv::Mat img1 = cv::imread("../data/potamogeton1.jpg", cv::IMREAD_GRAYSCALE);
+  cv::Mat img2 = cv::imread("../data/potamogeton2.jpg", cv::IMREAD_GRAYSCALE);
 ```
 Explanation:
 - ```detectionThres```: threshold for feature detection. If the number of features is not enough, choose a smaller value, like 0.001.
