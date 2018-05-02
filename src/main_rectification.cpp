@@ -96,8 +96,8 @@ int main()
 
     double detectionThres = 0.004;
     double nnMatchRatio = 0.5;
-    cv::Mat img1 = imread("../data/potamogeton1.jpg", cv::IMREAD_GRAYSCALE);
-    cv::Mat img2 = imread("../data/potamogeton2.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat img1 = cv::imread("../data/potamogeton1.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat img2 = cv::imread("../data/potamogeton2.jpg", cv::IMREAD_GRAYSCALE);
 
     //Step 2. Extract features AKAZE
 
