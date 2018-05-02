@@ -23,7 +23,7 @@ The algorithm compises the following steps:
 
 After you've installed all dependencies, just run this code:
 ```
-git clone https://github.com/avkudr/affine-rectification.git
+git clone --recursive https://github.com/avkudr/affine-rectification.git
 cd affine-rectification
 mkdir build
 cd build 
