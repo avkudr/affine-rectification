@@ -44,7 +44,7 @@ If you want to test it on your data, all you need to do is to change these lines
 ```
 Explanation:
 - ```detectionThres```: threshold for feature detection. If the number of features is not enough, choose a smaller value, like 0.001.
-- ```nnMatchRatio```: determines the ratio of matches that are considered as good. Lower value results in bigger number of matches, but, pay attention to outliers.
+- ```nnMatchRatio```: determines the ratio of matches that are considered as good. Lower value results in smaller number of matches, but, pay attention to outliers.
 - ```img1``` and ```img2```: specify the paths to your images.
 
 ## Citation
